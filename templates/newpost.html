@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post" class="form-signin">
+        <h2>New Post</h2>
+        <label>
+            subject line
+            <input type="text" class="input-block-level" name="subject" value="{{subject}}" placeholder="subject line">
+        </label>
+
+        <label>
+            blog content
+            <textarea name="content" class="input-textarea-level" placeholder="blog content goes here...">{{content}}</textarea>
+            <span class="help-inline error">{{error}}</span>
+        </label>
+        <button class="btn btn-success" type="submit"><i class="icon-pencil icon-white"></i> submit post</button>
+        <a class="btn btn-danger" href="/blog"><i class="icon-trash icon-white"></i> cancel post</a>
+    </form>
+{% endblock %}

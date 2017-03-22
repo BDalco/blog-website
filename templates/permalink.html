@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mainContent">
+        {{ p.render() | safe }}
+        {% if p.author == user.name %}
+            <form action="/blog/editpost/{{p.key().id()}}" class="btn-posts">
+                <button type="submit" class="btn btn-success"><i class="icon-edit icon-white"></i> edit post</button>
+            </form>
+            <form action="/blog/deletepost/{{p.key().id()}}" method="get" class="btn-posts">
+                <button type="submit" class="btn btn-danger"><i class="icon-trash icon-white"></i> delete post</button>
+            </form>
+            <br><br>
+        {% endif %}
+    </div>
+{% endblock %}

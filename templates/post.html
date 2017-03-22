@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="span11">
+        <h3>{{ p.subject }}</h3>
+    </div>
+    <div class="span11">
+        <ul class="inline">
+            <li class="user-color"><i class="icon-user"></i> {{ p.author }}</li>
+            <li class="post-time"><i class="icon-calendar "></i> {{ p.created.strftime("%a %b %d, %Y") }}</li>
+            <li><i class="icon-thumbs-up"></i> {{ p.likes }}</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="span11">
+        {{ p._render_text | safe }}
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" class="form-signin form-horizontal">
+    <div class="control-group">
+        <div class="controls">
+            <h2>Create a new user</h2>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputUsername">Username</label>
+        <div class="controls">
+            <input type="text" name="username" value="{{username}}" placeholder="Create Username">
+            <span class="help-inline error">{{error_username}}</span>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="inputPassword">Password</label>
+        <div class="controls">
+            <input type="password" name="password" value="" placeholder="Create Password">
+            <span class="help-inline error">{{error_password}}</span>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="verifyPassword">Verify Password</label>
+        <div class="controls">
+            <input type="password" name="verify" value="" placeholder="Confirm Password">
+            <span class="help-inline error">{{error_verify}}</span>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="inputEmailAddress">Email (optional)</label>
+        <div class="controls">
+            <input type="text" name="email" value="{{email}}" placeholder="email@provider.com">
+            <span class="help-inline error">{{error_email}}</span>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn btn-success" type="submit"><i class="icon-user icon-white"></i> create user</button>
+            <a class="btn btn-danger" href="/blog"><i class="icon-trash icon-white"></i> cancel create user</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

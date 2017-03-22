@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mainContent">
+    	<!-- Need to style error message -->
+    	<div class="row">
+            <div class="span11">
+        	   {{ message }}
+            </div>
+        </div>
+    	{% for p in posts %}
+    		{{ p.render() | safe }}
+            <div class="row postPadding">
+        		<div class="span11">
+                <!-- If user logged in -->
+        		{% if user.name %}
+        			<!-- If the user is the author allow to edit -->
+                    {% if p.author == user.name %}
+                        <form action="/blog/editpost/{{p.key().id()}}" class="btn-posts">
+                            <button class="btn btn-success" type="submit" ><i class="icon-edit icon-white"></i> edit post</button>
+                        </form>
+                        <form action="/blog/deletepost/{{p.key().id()}}" method="get" class="btn-posts">
+                            <button class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> delete post</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+                <!-- If user logged in -->
+                {% if user.name %}
+                    <!-- If user logged in and not the author -->
+                    {% if p.author != user.name %}
+                        <form action="/blog/comment/{{p.key().id()}}" method="get" class="btn-posts">
+                            <button class="btn btn-success" type="submit"><i class="icon-pencil icon-white"></i> comment</button>
+                        </form>
+                        <!-- If user logged in did not already like the post -->
+                        {% if user.name not in p.likes_users %}
+                            <form action="/blog/like/{{p.key().id()}}" method="post" class="btn-posts">
+                                <button class="btn btn-primary" type="submit"><i class="icon-thumbs-up icon-white"></i> like</button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                    <div class="row postPadding">
+                        {% for c in comments %}
+                            {% if c.commentID == p.key().id() %}
+                                <div class="span11">
+                                    <ul class="inline">
+                                        <li class="user-color"><i class="icon-user"></i> {{ c.commentAuthor }}</li>
+                                        <li class="post-time"><i class="icon-calendar "></i> {{ c.commentCreated.strftime("%a %b %d, %Y") }}</li>
+                                    </ul>
+                                </div>
+                                <div class="span11">
+                                    {{ c.comment | safe }}
+                                </div>
+                                <div class="span11 postPadding">
+                                {% if c.commentAuthor == user.name %}
+                                    <form action="/blog/comment-edit/{{c.key().id()}}" method="get" class="btn-posts">
+                                        <button class="btn btn-success" type="submit"><i class="icon-edit icon-white"></i> comment edit</button>
+                                    </form>
+                                    <form action="/blog/comment-delete/{{c.key().id()}}" method="get" class="btn-posts">
+                                        <button class="btn btn-danger" type="submit"><i class="icon-trash icon-white"></i> comment delete</button>
+                                    </form>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" class="form-signin form-horizontal">
+    <div class="control-group">
+    	<div class="controls">
+    		<h2>Login</h2>
+    	</div>
+    </div>
+    <div class="control-group">
+    	<label class="control-label" for="inputUsername">Username</label>
+    	<div class="controls">
+    		<input type="text" name="username" value="{{username}}">
+    	</div>
+    </div>
+    
+    <div class="control-group">
+    	<label class="control-label" for="inputPassword">Password</label>
+    	<div class="controls">
+    		<input type="password" name="password" value="">
+    	</div>
+    </div>
+    
+    <div class="control-group">
+    	<div class="controls">
+            <div class="error">{{error}}</div>
+    		<button class="btn btn-success" type="submit"><i class="icon-user icon-white"></i> login</button>
+    	</div>
+    </div>
+
+</form>
+
+{% endblock %}

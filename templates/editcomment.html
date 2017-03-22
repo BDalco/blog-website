@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post" class="form-signin">
+    	<h2>edit your comment on blog post:</h2>
+        <label>
+            <textarea name="comment" class="input-textarea-level" value="{{comment}}">{{ commentEdit }}</textarea>
+            <span class="help-inline error">{{error}}</span>
+        </label>
+		<button class="btn btn-success" type="submit"><i class="icon-pencil icon-white"></i> submit edit</button>
+		<a class="btn btn-danger" href="/blog"><i class="icon-trash icon-white"></i> cancel edit</a>
+    </form>
+{% endblock %}

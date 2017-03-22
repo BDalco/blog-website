@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mainContent">
+        {{ p.render() | safe }}
+        <form method="post">
+            <h2>Comment on blog post:</h2>
+            <label>
+                <textarea name="comment" value="{{comment}}" class="input-textarea-level" placeholder="comment content goes here..."></textarea>
+            </label>
+            <div class="error">{{error}}</div>
+            <button class="btn btn-success" type="submit"><i class="icon-pencil icon-white"></i> submit comment</button>
+            <a class="btn btn-danger" href="/blog"><i class="icon-trash icon-white"></i> cancel comment</a>
+        </form>
+    </div>
+{% endblock %}
